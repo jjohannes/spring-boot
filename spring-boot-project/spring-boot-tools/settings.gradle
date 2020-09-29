@@ -1,0 +1,1 @@
+rootDir.eachDirMatch(~/spring-boot-.*/) { include it.name }

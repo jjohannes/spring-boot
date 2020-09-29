@@ -9,7 +9,7 @@ description = "Spring Boot Loader"
 dependencies {
 	compileOnly("org.springframework:spring-core")
 
-	testImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
+	testImplementation("org.springframework.boot:spring-boot-test-support")
 	testImplementation("org.assertj:assertj-core")
 	testImplementation("org.awaitility:awaitility")
 	testImplementation("org.junit.jupiter:junit-jupiter")

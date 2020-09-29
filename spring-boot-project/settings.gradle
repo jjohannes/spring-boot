@@ -1,0 +1,5 @@
+includeBuild "../build-src"
+
+rootDir.eachDirMatch(~/spring-boot.*/) {
+    if (!new File(it, "settings.gradle").exists()) { include it.name }
+}

@@ -8,9 +8,9 @@ plugins {
 description = "Spring Boot Test AutoConfigure"
 
 dependencies {
-	api(project(":spring-boot-project:spring-boot"))
-	api(project(":spring-boot-project:spring-boot-test"))
-	api(project(":spring-boot-project:spring-boot-autoconfigure"))
+	api("org.springframework.boot:spring-boot")
+	api("org.springframework.boot:spring-boot-test")
+	api("org.springframework.boot:spring-boot-autoconfigure")
 
 	optional("javax.json.bind:javax.json.bind-api")
 	optional("javax.servlet:javax.servlet-api")
@@ -48,7 +48,7 @@ dependencies {
 	optional("org.mongodb:mongodb-driver-reactivestreams")
 	optional("org.mongodb:mongodb-driver-sync")
 
-	testImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
+	testImplementation("org.springframework.boot:spring-boot-test-support")
 	testImplementation("ch.qos.logback:logback-classic")
 	testImplementation("com.fasterxml.jackson.module:jackson-module-parameter-names")
 	testImplementation("com.h2database:h2")

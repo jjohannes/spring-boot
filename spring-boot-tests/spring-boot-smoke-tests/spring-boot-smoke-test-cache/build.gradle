@@ -10,7 +10,7 @@ def caches = [
 		"com.github.ben-manes.caffeine:caffeine"
 	],
 	"couchbase": [
-			project(":spring-boot-project:spring-boot-starters:spring-boot-starter-data-couchbase")
+			"org.springframework.boot:spring-boot-starter-data-couchbase"
 	],
 	"ehcache": [
 		"javax.cache:cache-api",
@@ -28,16 +28,16 @@ def caches = [
 		"org.infinispan:infinispan-spring5-embedded"
 	],
 	"redis": [
-		project(":spring-boot-project:spring-boot-starters:spring-boot-starter-data-redis")
+		"org.springframework.boot:spring-boot-starter-data-redis"
 	]
 ]
 
 dependencies {
-	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-actuator"))
-	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-cache"))
-	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-web"))
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("org.springframework.boot:spring-boot-starter-cache")
+	implementation("org.springframework.boot:spring-boot-starter-web")
 
-	testImplementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-test"))
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
 	if (project.hasProperty("cache")) {
 		caches[project.getProperty("cache")].each { runtimeOnly it }

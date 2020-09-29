@@ -20,10 +20,10 @@ configurations {
 dependencies {
 	asciidoctorExtensions("org.springframework.restdocs:spring-restdocs-asciidoctor")
 
-	api(project(":spring-boot-project:spring-boot-actuator"))
+	api("org.springframework.boot:spring-boot-actuator")
 
-	api(project(":spring-boot-project:spring-boot"))
-	api(project(":spring-boot-project:spring-boot-autoconfigure"))
+	api("org.springframework.boot:spring-boot")
+	api("org.springframework.boot:spring-boot-autoconfigure")
 
 	implementation("com.fasterxml.jackson.core:jackson-databind")
 	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
@@ -106,8 +106,8 @@ dependencies {
 	optional("org.springframework.session:spring-session-core")
 	optional("redis.clients:jedis")
 
-	testImplementation(project(":spring-boot-project:spring-boot-test"))
-	testImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
+	testImplementation("org.springframework.boot:spring-boot-test")
+	testImplementation("org.springframework.boot:spring-boot-test-support")
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("io.r2dbc:r2dbc-h2")
 	testImplementation("com.squareup.okhttp3:mockwebserver")
@@ -151,7 +151,7 @@ test {
 }
 
 task dependencyVersions(type: org.springframework.boot.build.constraints.ExtractVersionConstraints) {
-	enforcedPlatform(":spring-boot-project:spring-boot-dependencies")
+	enforcedPlatform("org.springframework.boot:spring-boot-dependencies")
 }
 
 tasks.withType(org.asciidoctor.gradle.jvm.AbstractAsciidoctorTask) {

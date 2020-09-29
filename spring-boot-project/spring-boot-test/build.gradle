@@ -9,7 +9,7 @@ plugins {
 description = "Spring Boot Test"
 
 dependencies {
-	api(project(":spring-boot-project:spring-boot"))
+	api("org.springframework.boot:spring-boot")
 
 	optional("com.fasterxml.jackson.core:jackson-databind")
 	optional("com.google.code.gson:gson")
@@ -34,7 +34,7 @@ dependencies {
 	optional("org.springframework:spring-webflux")
 	optional("net.sourceforge.htmlunit:htmlunit")
 
-	testImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
+	testImplementation("org.springframework.boot:spring-boot-test-support")
 	testImplementation("io.mockk:mockk")
 	testImplementation("javax.json:javax.json-api")
 	testImplementation("ch.qos.logback:logback-classic")

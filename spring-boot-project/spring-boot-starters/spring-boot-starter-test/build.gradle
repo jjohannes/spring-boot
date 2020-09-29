@@ -5,9 +5,9 @@ plugins {
 description = "Starter for testing Spring Boot applications with libraries including JUnit, Hamcrest and Mockito"
 
 dependencies {
-	api(project(":spring-boot-project:spring-boot-starters:spring-boot-starter"))
-	api(project(":spring-boot-project:spring-boot-test"))
-	api(project(":spring-boot-project:spring-boot-test-autoconfigure"))
+	api("org.springframework.boot:spring-boot-starter")
+	api("org.springframework.boot:spring-boot-test")
+	api("org.springframework.boot:spring-boot-test-autoconfigure")
 	api("com.jayway.jsonpath:json-path")
 	api("jakarta.xml.bind:jakarta.xml.bind-api")
 	api("org.assertj:assertj-core")

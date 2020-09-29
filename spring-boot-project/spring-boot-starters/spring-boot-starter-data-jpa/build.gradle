@@ -5,8 +5,8 @@ plugins {
 description = "Starter for using Spring Data JPA with Hibernate"
 
 dependencies {
-	api(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-aop"))
-	api(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-jdbc"))
+	api("org.springframework.boot:spring-boot-starter-aop")
+	api("org.springframework.boot:spring-boot-starter-jdbc")
 	api("jakarta.transaction:jakarta.transaction-api")
 	api("jakarta.persistence:jakarta.persistence-api")
 	api("org.hibernate:hibernate-core") {

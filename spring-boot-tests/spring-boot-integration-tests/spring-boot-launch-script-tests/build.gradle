@@ -11,13 +11,13 @@ configurations {
 }
 
 dependencies {
-	app project(path: ":spring-boot-project:spring-boot-dependencies", configuration: "mavenRepository")
-	app project(path: ":spring-boot-project:spring-boot-tools:spring-boot-gradle-plugin", configuration: "mavenRepository")
-	app project(path: ":spring-boot-project:spring-boot-starters:spring-boot-starter-web", configuration: "mavenRepository")
+	app(group: "org.springframework.boot", name: "spring-boot-dependencies", configuration: "mavenRepository")
+	app(group: "org.springframework.boot", name: "spring-boot-gradle-plugin", configuration: "mavenRepository")
+	app(group: "org.springframework.boot", name: "spring-boot-starter-web", configuration: "mavenRepository")
 
-	intTestImplementation(enforcedPlatform(project(":spring-boot-project:spring-boot-parent")))
-	intTestImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
-	intTestImplementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-test"))
+	intTestImplementation(enforcedPlatform("org.springframework.boot:spring-boot-parent"))
+	intTestImplementation("org.springframework.boot:spring-boot-test-support")
+	intTestImplementation("org.springframework.boot:spring-boot-starter-test")
 	intTestImplementation("org.testcontainers:testcontainers")
 }
 

@@ -6,7 +6,7 @@ plugins {
 description = "Spring Boot Testing Support"
 
 dependencies {
-	api(platform(project(path: ":spring-boot-project:spring-boot-parent")))
+	api(platform("org.springframework.boot:spring-boot-parent"))
 
 	compileOnly("com.datastax.oss:java-driver-core")
 	compileOnly("javax.servlet:javax.servlet-api")

@@ -44,29 +44,29 @@ plugins.withType(EclipsePlugin) {
 }
 
 dependencies {
-	actuatorApiDocumentation(project(path: ":spring-boot-project:spring-boot-actuator-autoconfigure", configuration: "documentation"))
+	actuatorApiDocumentation(group: "org.springframework.boot", name: "spring-boot-actuator-autoconfigure", configuration: "documentation")
 
 	asciidoctorExtensions("io.spring.asciidoctor:spring-asciidoctor-extensions-spring-boot")
-	asciidoctorExtensions(project(path: ":spring-boot-project:spring-boot-actuator-autoconfigure"))
-	asciidoctorExtensions(project(path: ":spring-boot-project:spring-boot-autoconfigure"))
-	asciidoctorExtensions(project(path: ":spring-boot-project:spring-boot-devtools"))
+	asciidoctorExtensions("org.springframework.boot:spring-boot-actuator-autoconfigure")
+	asciidoctorExtensions("org.springframework.boot:spring-boot-autoconfigure")
+	asciidoctorExtensions("org.springframework.boot:spring-boot-devtools")
 
-	autoConfiguration(project(path: ":spring-boot-project:spring-boot-autoconfigure", configuration: "autoConfigurationMetadata"))
-	autoConfiguration(project(path: ":spring-boot-project:spring-boot-actuator-autoconfigure", configuration: "autoConfigurationMetadata"))
-	autoConfiguration(project(path: ":spring-boot-project:spring-boot-devtools", configuration: "autoConfigurationMetadata"))
+	autoConfiguration(group: "org.springframework.boot", name: "spring-boot-autoconfigure", configuration: "autoConfigurationMetadata")
+	autoConfiguration(group: "org.springframework.boot", name: "spring-boot-actuator-autoconfigure", configuration: "autoConfigurationMetadata")
+	autoConfiguration(group: "org.springframework.boot", name: "spring-boot-devtools", configuration: "autoConfigurationMetadata")
 
-	configurationProperties(project(path: ":spring-boot-project:spring-boot", configuration: "configurationPropertiesMetadata"))
-	configurationProperties(project(path: ":spring-boot-project:spring-boot-actuator", configuration: "configurationPropertiesMetadata"))
-	configurationProperties(project(path: ":spring-boot-project:spring-boot-actuator-autoconfigure", configuration: "configurationPropertiesMetadata"))
-	configurationProperties(project(path: ":spring-boot-project:spring-boot-autoconfigure", configuration: "configurationPropertiesMetadata"))
-	configurationProperties(project(path: ":spring-boot-project:spring-boot-devtools", configuration: "configurationPropertiesMetadata"))
+	configurationProperties(group: "org.springframework.boot", name: "spring-boot", configuration: "configurationPropertiesMetadata")
+	configurationProperties(group: "org.springframework.boot", name: "spring-boot-actuator", configuration: "configurationPropertiesMetadata")
+	configurationProperties(group: "org.springframework.boot", name: "spring-boot-actuator-autoconfigure", configuration: "configurationPropertiesMetadata")
+	configurationProperties(group: "org.springframework.boot", name: "spring-boot-autoconfigure", configuration: "configurationPropertiesMetadata")
+	configurationProperties(group: "org.springframework.boot", name: "spring-boot-devtools", configuration: "configurationPropertiesMetadata")
 
-	gradlePluginDocumentation(project(path: ":spring-boot-project:spring-boot-tools:spring-boot-gradle-plugin", configuration: "documentation"))
+	gradlePluginDocumentation(group: "org.springframework.boot", name: "spring-boot-gradle-plugin", configuration: "documentation")
 
-	implementation(project(path: ":spring-boot-project:spring-boot-actuator"))
-	implementation(project(path: ":spring-boot-project:spring-boot-autoconfigure"))
-	implementation(project(path: ":spring-boot-project:spring-boot-test"))
-	implementation(project(path: ":spring-boot-project:spring-boot-test-autoconfigure"))
+	implementation("org.springframework.boot:spring-boot-actuator")
+	implementation("org.springframework.boot:spring-boot-autoconfigure")
+	implementation("org.springframework.boot:spring-boot-test")
+	implementation("org.springframework.boot:spring-boot-test-autoconfigure")
 	implementation("com.zaxxer:HikariCP")
 	implementation("io.micrometer:micrometer-core")
 	implementation("io.projectreactor.netty:reactor-netty")
@@ -90,18 +90,18 @@ dependencies {
 	implementation("org.springframework.security:spring-security-web")
 	implementation("org.junit.jupiter:junit-jupiter")
 
-	mavenPluginDocumentation(project(path: ":spring-boot-project:spring-boot-tools:spring-boot-maven-plugin", configuration: "documentation"))
+	mavenPluginDocumentation(group: "org.springframework.boot", name: "spring-boot-maven-plugin", configuration: "documentation")
 
-	testImplementation(project(":spring-boot-project:spring-boot-actuator-autoconfigure"))
-	testImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
+	testImplementation("org.springframework.boot:spring-boot-actuator-autoconfigure")
+	testImplementation("org.springframework.boot:spring-boot-tools:spring-boot-test-support")
 	testImplementation("org.assertj:assertj-core")
 	testImplementation("org.junit.jupiter:junit-jupiter")
 
-	testRuntimeOnly(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-web"))
+	testRuntimeOnly("org.springframework.boot:spring-boot-starter-web")
 	testRuntimeOnly("com.h2database:h2")
 	testRuntimeOnly("org.springframework:spring-jdbc")
 
-	testSlices(project(path: ":spring-boot-project:spring-boot-test-autoconfigure", configuration: "testSliceMetadata"))
+	testSlices(group: "org.springframework.boot", name: "spring-boot-test-autoconfigure", configuration: "testSliceMetadata")
 }
 
 task dependencyVersions(type: org.springframework.boot.build.constraints.ExtractVersionConstraints) {

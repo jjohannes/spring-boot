@@ -72,7 +72,7 @@ dependencies {
 	optional("org.jetbrains.kotlin:kotlin-reflect")
 	optional("org.jetbrains.kotlin:kotlin-stdlib")
 
-	testImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
+	testImplementation("org.springframework.boot:spring-boot-test-support")
 	testImplementation("com.google.appengine:appengine-api-1.0-sdk")
 	testImplementation("com.h2database:h2")
 	testImplementation("com.ibm.db2:jcc")
