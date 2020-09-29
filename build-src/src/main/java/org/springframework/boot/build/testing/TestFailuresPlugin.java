@@ -39,6 +39,9 @@ public class TestFailuresPlugin implements Plugin<Project> {
 
 	@Override
 	public void apply(Project project) {
+		if (project.getRootProject().getExtensions().findByName("testResults") != null) {
+			return;
+		}
 		TestResultsExtension testResults = getOrCreateTestResults(project);
 		project.getTasks().withType(Test.class,
 				(test) -> test.addTestListener(new FailureRecordingTestListener(testResults, test)));
