@@ -12,11 +12,11 @@ configurations.all {
 }
 
 dependencies {
-	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-data-jpa")) {
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa") {
 		exclude group: "org.hibernate.javax.persistence", module: "hibernate-jpa-2.1-api"
 	}
 
 	runtimeOnly("com.h2database:h2")
 
-	testImplementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-test"))
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

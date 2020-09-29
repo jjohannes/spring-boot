@@ -14,7 +14,7 @@ dependencies {
 	api("org.apache.httpcomponents:httpclient")
 	api("org.springframework:spring-core")
 	
-	testImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
+	testImplementation("org.springframework.boot:spring-boot-test-support")
 	testImplementation("com.jayway.jsonpath:json-path")
 	testImplementation("org.assertj:assertj-core")
 	testImplementation("org.testcontainers:testcontainers")

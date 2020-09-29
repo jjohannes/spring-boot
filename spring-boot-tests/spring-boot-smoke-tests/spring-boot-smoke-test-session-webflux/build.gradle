@@ -7,21 +7,21 @@ description = "Spring Boot Session WebFlux smoke test"
 
 def sessionStores = [
 	"mongodb": [
-		project(":spring-boot-project:spring-boot-starters:spring-boot-starter-data-mongodb-reactive"),
+		"org.springframework.boot:spring-boot-starter-data-mongodb-reactive",
 		"de.flapdoodle.embed:de.flapdoodle.embed.mongo",
 		"org.springframework.session:spring-session-data-mongodb"
 	],
 	"redis": [
-		project(":spring-boot-project:spring-boot-starters:spring-boot-starter-data-redis-reactive"),
+		"org.springframework.boot:spring-boot-starter-data-redis-reactive",
 		"org.springframework.session:spring-session-data-redis"
 	]
 ]
 
 dependencies {
-	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-security"))
-	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-webflux"))
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-webflux")
 
 	sessionStores[project.findProperty("sessionStore") ?: "mongodb"].each { runtimeOnly it }
 
-	testImplementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-test"))
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

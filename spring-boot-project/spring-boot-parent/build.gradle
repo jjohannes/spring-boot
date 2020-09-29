@@ -163,5 +163,5 @@ bom {
 }
 
 dependencies {
-	api(enforcedPlatform(project(":spring-boot-project:spring-boot-dependencies")))
+	api(enforcedPlatform("org.springframework.boot:spring-boot-dependencies"))
 }

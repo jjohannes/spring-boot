@@ -10,9 +10,9 @@ configurations {
 }
 
 dependencies {
-	testImplementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-test"))
-	testImplementation(project(":spring-boot-project:spring-boot-actuator-autoconfigure"))
-	testImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.boot:spring-boot-actuator-autoconfigure")
+	testImplementation("org.springframework.boot:spring-boot-test-support")
 	testImplementation("com.samskivert:jmustache")
 	testImplementation("jakarta.servlet:jakarta.servlet-api")
 	testImplementation("org.apache.httpcomponents:httpasyncclient")
@@ -23,17 +23,17 @@ dependencies {
 	}
 	testImplementation("org.springframework:spring-web")
 
-	testRepository(project(path: ":spring-boot-project:spring-boot-dependencies", configuration: "mavenRepository"))
-	testRepository(project(path: ":spring-boot-project:spring-boot-tools:spring-boot-maven-plugin", configuration: "mavenRepository"))
-	testRepository(project(path: ":spring-boot-project:spring-boot-starters:spring-boot-starter", configuration: "mavenRepository"))
-	testRepository(project(path: ":spring-boot-project:spring-boot-starters:spring-boot-starter-actuator", configuration: "mavenRepository"))
-	testRepository(project(path: ":spring-boot-project:spring-boot-starters:spring-boot-starter-jetty", configuration: "mavenRepository"))
-	testRepository(project(path: ":spring-boot-project:spring-boot-starters:spring-boot-starter-json", configuration: "mavenRepository"))
-	testRepository(project(path: ":spring-boot-project:spring-boot-starters:spring-boot-starter-parent", configuration: "mavenRepository"))
-	testRepository(project(path: ":spring-boot-project:spring-boot-starters:spring-boot-starter-tomcat", configuration: "mavenRepository"))
-	testRepository(project(path: ":spring-boot-project:spring-boot-starters:spring-boot-starter-undertow", configuration: "mavenRepository"))
+	testRepository(group: "org.springframework.boot", name: "spring-boot-dependencies", configuration: "mavenRepository")
+	testRepository(group: "org.springframework.boot", name: "spring-boot-maven-plugin", configuration: "mavenRepository")
+	testRepository(group: "org.springframework.boot", name: "spring-boot-starter", configuration: "mavenRepository")
+	testRepository(group: "org.springframework.boot", name: "spring-boot-starter-actuator", configuration: "mavenRepository")
+	testRepository(group: "org.springframework.boot", name: "spring-boot-starter-jetty", configuration: "mavenRepository")
+	testRepository(group: "org.springframework.boot", name: "spring-boot-starter-json", configuration: "mavenRepository")
+	testRepository(group: "org.springframework.boot", name: "spring-boot-starter-parent", configuration: "mavenRepository")
+	testRepository(group: "org.springframework.boot", name: "spring-boot-starter-tomcat", configuration: "mavenRepository")
+	testRepository(group: "org.springframework.boot", name: "spring-boot-starter-undertow", configuration: "mavenRepository")
 
-	testRuntimeOnly(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-logging"))
+	testRuntimeOnly("org.springframework.boot:spring-boot-starter-logging")
 }
 
 task prepareMavenBinaries(type: org.springframework.boot.build.mavenplugin.PrepareMavenBinaries) {

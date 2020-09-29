@@ -5,9 +5,9 @@ plugins {
 description = "Starter for building WebFlux applications using Spring Framework's Reactive Web support"
 
 dependencies {
-	api(project(":spring-boot-project:spring-boot-starters:spring-boot-starter"))
-	api(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-json"))
-	api(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-reactor-netty"))
+	api("org.springframework.boot:spring-boot-starter")
+	api("org.springframework.boot:spring-boot-starter-json")
+	api("org.springframework.boot:spring-boot-starter-reactor-netty")
 	api("org.springframework:spring-web")
 	api("org.springframework:spring-webflux")
 	api("org.synchronoss.cloud:nio-multipart-parser")

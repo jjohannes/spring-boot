@@ -16,14 +16,14 @@ configurations {
 }
 
 dependencies {
-	api(project(":spring-boot-project:spring-boot"))
-	api(project(":spring-boot-project:spring-boot-autoconfigure"))
+	api("org.springframework.boot:spring-boot")
+	api("org.springframework.boot:spring-boot-autoconfigure")
 
-	intTestDependencies(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-web"))
+	intTestDependencies("org.springframework.boot:spring-boot-starter-web")
 
-	intTestImplementation(project(":spring-boot-project:spring-boot-autoconfigure"))
-	intTestImplementation(project(":spring-boot-project:spring-boot-test"))
-	intTestImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
+	intTestImplementation("org.springframework.boot:spring-boot-autoconfigure")
+	intTestImplementation("org.springframework.boot:spring-boot-test")
+	intTestImplementation("org.springframework.boot:spring-boot-test-support")
 	intTestImplementation("org.apache.httpcomponents:httpclient")
 	intTestImplementation("org.assertj:assertj-core")
 	intTestImplementation("org.awaitility:awaitility")
@@ -43,8 +43,8 @@ dependencies {
 	optional("org.springframework.data:spring-data-redis")
 	optional("org.springframework.session:spring-session-core")
 
-	testImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
-	testImplementation(project(":spring-boot-project:spring-boot-test"))
+	testImplementation("org.springframework.boot:spring-boot-tools:spring-boot-test-support")
+	testImplementation("org.springframework.boot:spring-boot-test")
 	testImplementation("ch.qos.logback:logback-classic")
 	testImplementation("com.h2database:h2")
 	testImplementation("com.zaxxer:HikariCP")

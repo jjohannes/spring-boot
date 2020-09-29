@@ -13,12 +13,12 @@ configurations.all {
 }
 
 dependencies {
-	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-actuator"))
-	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-cache"))
-	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-web"))
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("org.springframework.boot:spring-boot-starter-cache")
+	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.hazelcast:hazelcast")
 	implementation("com.hazelcast:hazelcast-spring")
 
-	testImplementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-test"))
-	testImplementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-webflux"))
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-webflux")
 }

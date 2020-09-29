@@ -11,26 +11,26 @@ def sessionStores = [
 		"org.springframework.session:spring-session-hazelcast"
 	],
 	"jdbc": [
-		project(":spring-boot-project:spring-boot-starters:spring-boot-starter-jdbc"),
+		"org.springframework.boot:spring-boot-starter-jdbc",
 		"org.springframework.session:spring-session-jdbc"		,
 		"com.h2database:h2"
 	],
 	"mongodb": [
-		project(":spring-boot-project:spring-boot-starters:spring-boot-starter-data-mongodb"),
+		"org.springframework.boot:spring-boot-starter-data-mongodb",
 		"org.springframework.session:spring-session-data-mongodb"
 	],
 	"redis": [
-		project(":spring-boot-project:spring-boot-starters:spring-boot-starter-data-redis"),
+		"org.springframework.boot:spring-boot-starter-data-redis",
 		"org.springframework.session:spring-session-data-redis"
 	]
 ]
 
 dependencies {
-	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-actuator"))
-	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-security"))
-	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-web"))
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-web")
 
 	sessionStores[project.findProperty("sessionStore") ?: "jdbc"].each { runtimeOnly it }
 
-	testImplementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-test"))
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

@@ -6,7 +6,7 @@ plugins {
 description = "Spring Boot Web Services smoke test"
 
 dependencies {
-	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-web-services"))
+	implementation("org.springframework.boot:spring-boot-starter-web-services")
 	implementation("org.jdom:jdom2")
 
 	runtimeOnly("jaxen:jaxen")
@@ -16,5 +16,5 @@ dependencies {
 		runtimeOnly("org.glassfish.jaxb:jaxb-runtime")
 	}
 
-	testImplementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-test"))
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

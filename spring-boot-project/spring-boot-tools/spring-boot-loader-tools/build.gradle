@@ -23,9 +23,9 @@ dependencies {
 
 	compileOnly("ch.qos.logback:logback-classic")
 
-	loader(project(":spring-boot-project:spring-boot-tools:spring-boot-loader"))
+	loader("org.springframework.boot:spring-boot-loader")
 
-	jarmode(project(":spring-boot-project:spring-boot-tools:spring-boot-jarmode-layertools"))
+	jarmode("org.springframework.boot:spring-boot-jarmode-layertools")
 
 	testImplementation("org.assertj:assertj-core")
 	testImplementation("org.junit.jupiter:junit-jupiter")

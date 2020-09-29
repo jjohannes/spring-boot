@@ -63,10 +63,10 @@ public class ExtractVersionConstraints extends DefaultTask {
 		dependencies.getComponents().all(this::processMetadataDetails);
 	}
 
-	public void enforcedPlatform(String projectPath) {
+	public void enforcedPlatform(String coordinates) {
 		this.configuration.getDependencies().add(getProject().getDependencies().enforcedPlatform(
-				getProject().getDependencies().project(Collections.singletonMap("path", projectPath))));
-		this.projectPaths.add(projectPath);
+				getProject().getDependencies().create(coordinates)));
+		this.projectPaths.add(coordinates);
 	}
 
 	@Internal
@@ -88,6 +88,7 @@ public class ExtractVersionConstraints extends DefaultTask {
 	void extractVersionConstraints() {
 		this.configuration.resolve();
 		for (String projectPath : this.projectPaths) {
+			/* FIXME ...
 			extractVersionProperties(projectPath);
 			for (DependencyConstraint constraint : getProject().project(projectPath).getConfigurations()
 					.getByName("apiElements").getAllDependencyConstraints()) {
@@ -95,7 +96,7 @@ public class ExtractVersionConstraints extends DefaultTask {
 						constraint.getVersionConstraint().toString());
 				this.constrainedVersions.add(new ConstrainedVersion(constraint.getGroup(), constraint.getName(),
 						constraint.getVersionConstraint().toString()));
-			}
+			}*/
 		}
 	}
 

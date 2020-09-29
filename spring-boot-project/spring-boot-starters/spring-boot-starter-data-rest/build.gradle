@@ -5,6 +5,6 @@ plugins {
 description = "Starter for exposing Spring Data repositories over REST using Spring Data REST"
 
 dependencies {
-	api(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-web"))
+	api("org.springframework.boot:spring-boot-starter-web")
 	api("org.springframework.data:spring-data-rest-webmvc")
 }

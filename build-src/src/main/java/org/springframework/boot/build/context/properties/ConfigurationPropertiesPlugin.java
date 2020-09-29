@@ -64,8 +64,8 @@ public class ConfigurationPropertiesPlugin implements Plugin<Project> {
 	private void addConfigurationProcessorDependency(Project project) {
 		Configuration annotationProcessors = project.getConfigurations()
 				.getByName(JavaPlugin.ANNOTATION_PROCESSOR_CONFIGURATION_NAME);
-		annotationProcessors.getDependencies().add(project.getDependencies().project(Collections.singletonMap("path",
-				":spring-boot-project:spring-boot-tools:spring-boot-configuration-processor")));
+		annotationProcessors.getDependencies().add(project.getDependencies().create(
+				"org.springframework.boot:spring-boot-configuration-processor"));
 	}
 
 	private void addMetadataArtifact(Project project) {
