@@ -45,6 +45,8 @@ settings.gradle.projectsLoaded {
 	}
 }
 
+includeBuild "build-src"
+
 include "spring-boot-project:spring-boot-dependencies"
 include "spring-boot-project:spring-boot-parent"
 include "spring-boot-project:spring-boot-tools:spring-boot-antlib"
