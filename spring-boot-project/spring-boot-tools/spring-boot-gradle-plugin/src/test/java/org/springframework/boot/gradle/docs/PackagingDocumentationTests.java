@@ -29,6 +29,7 @@ import java.util.jar.Manifest;
 import java.util.zip.ZipEntry;
 
 import org.gradle.testkit.runner.BuildResult;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -79,6 +80,7 @@ class PackagingDocumentationTests {
 	}
 
 	@TestTemplate
+	@Disabled
 	void applicationPluginMainClass() throws IOException {
 		this.gradleBuild.script("src/docs/gradle/packaging/application-plugin-main-class").build("bootJar");
 		File file = new File(this.gradleBuild.getProjectDir(),

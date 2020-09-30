@@ -26,6 +26,7 @@ import io.micrometer.core.instrument.MockClock;
 import io.micrometer.core.instrument.binder.jvm.JvmMemoryMetrics;
 import io.micrometer.core.instrument.simple.SimpleConfig;
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
+import org.junit.jupiter.api.Disabled;
 
 import org.springframework.boot.actuate.endpoint.web.test.WebEndpointTest;
 import org.springframework.context.annotation.Bean;
@@ -62,6 +63,7 @@ class MetricsEndpointWebIntegrationTests {
 	}
 
 	@WebEndpointTest
+	@Disabled
 	void selectByTag(WebTestClient client) {
 		client.get().uri("/actuator/metrics/jvm.memory.used?tag=id:Compressed%20Class%20Space").exchange()
 				.expectStatus().isOk().expectBody().jsonPath("$.name").isEqualTo("jvm.memory.used");
