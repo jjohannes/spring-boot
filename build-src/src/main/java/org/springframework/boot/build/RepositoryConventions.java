@@ -28,13 +28,13 @@ class RepositoryConventions {
 
 		repositories.mavenCentral();
 		if (!version.endsWith("RELEASE")) {
-			repositories.maven(m -> m.setUrl("https://repo.spring.io/milestone"));
+			repositories.maven((m) -> m.setUrl("https://repo.spring.io/milestone"));
 		}
 		if (version.endsWith("BUILD-SNAPSHOT")) {
-			repositories.maven(m -> m.setUrl("https://repo.spring.io/snapshot"));
+			repositories.maven((m) -> m.setUrl("https://repo.spring.io/snapshot"));
 		}
 
-		configurations.all(c -> c.getResolutionStrategy().cacheChangingModulesFor(0, "minutes"));
+		configurations.all((c) -> c.getResolutionStrategy().cacheChangingModulesFor(0, "minutes"));
 	}
 
 }

@@ -29,7 +29,6 @@ import org.gradle.api.DefaultTask;
 import org.gradle.api.Task;
 import org.gradle.api.artifacts.ComponentMetadataDetails;
 import org.gradle.api.artifacts.Configuration;
-import org.gradle.api.artifacts.DependencyConstraint;
 import org.gradle.api.artifacts.DependencyConstraintMetadata;
 import org.gradle.api.artifacts.dsl.DependencyHandler;
 import org.gradle.api.tasks.Internal;
@@ -64,8 +63,8 @@ public class ExtractVersionConstraints extends DefaultTask {
 	}
 
 	public void enforcedPlatform(String coordinates) {
-		this.configuration.getDependencies().add(getProject().getDependencies().enforcedPlatform(
-				getProject().getDependencies().create(coordinates)));
+		this.configuration.getDependencies().add(
+				getProject().getDependencies().enforcedPlatform(getProject().getDependencies().create(coordinates)));
 		this.projectPaths.add(coordinates);
 	}
 
@@ -88,15 +87,15 @@ public class ExtractVersionConstraints extends DefaultTask {
 	void extractVersionConstraints() {
 		this.configuration.resolve();
 		for (String projectPath : this.projectPaths) {
-			/* FIXME ...
-			extractVersionProperties(projectPath);
-			for (DependencyConstraint constraint : getProject().project(projectPath).getConfigurations()
-					.getByName("apiElements").getAllDependencyConstraints()) {
-				this.versionConstraints.put(constraint.getGroup() + ":" + constraint.getName(),
-						constraint.getVersionConstraint().toString());
-				this.constrainedVersions.add(new ConstrainedVersion(constraint.getGroup(), constraint.getName(),
-						constraint.getVersionConstraint().toString()));
-			}*/
+			/*
+			 * FIXME ... extractVersionProperties(projectPath); for (DependencyConstraint
+			 * constraint : getProject().project(projectPath).getConfigurations()
+			 * .getByName("apiElements").getAllDependencyConstraints()) {
+			 * this.versionConstraints.put(constraint.getGroup() + ":" +
+			 * constraint.getName(), constraint.getVersionConstraint().toString());
+			 * this.constrainedVersions.add(new ConstrainedVersion(constraint.getGroup(),
+			 * constraint.getName(), constraint.getVersionConstraint().toString())); }
+			 */
 		}
 	}
 

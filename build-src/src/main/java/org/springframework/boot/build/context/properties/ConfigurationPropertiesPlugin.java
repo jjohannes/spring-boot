@@ -64,8 +64,8 @@ public class ConfigurationPropertiesPlugin implements Plugin<Project> {
 	private void addConfigurationProcessorDependency(Project project) {
 		Configuration annotationProcessors = project.getConfigurations()
 				.getByName(JavaPlugin.ANNOTATION_PROCESSOR_CONFIGURATION_NAME);
-		annotationProcessors.getDependencies().add(project.getDependencies().create(
-				"org.springframework.boot:spring-boot-configuration-processor"));
+		annotationProcessors.getDependencies()
+				.add(project.getDependencies().create("org.springframework.boot:spring-boot-configuration-processor"));
 	}
 
 	private void addMetadataArtifact(Project project) {
@@ -88,7 +88,8 @@ public class ConfigurationPropertiesPlugin implements Plugin<Project> {
 		compileJava.getOptions().getCompilerArgs()
 				.add("-Aorg.springframework.boot.configurationprocessor.additionalMetadataLocations=" + StringUtils
 						.collectionToCommaDelimitedString(mainSourceSet.getResources().getSourceDirectories().getFiles()
-								.stream().map(getRootBuild(project.getGradle()).getRootProject()::relativePath).collect(Collectors.toSet())));
+								.stream().map(getRootBuild(project.getGradle()).getRootProject()::relativePath)
+								.collect(Collectors.toSet())));
 	}
 
 	private Gradle getRootBuild(Gradle build) {

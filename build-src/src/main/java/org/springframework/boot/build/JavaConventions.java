@@ -17,7 +17,6 @@ package org.springframework.boot.build;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -193,8 +192,8 @@ class JavaConventions {
 				.matching((configuration) -> configuration.getName().endsWith("Classpath")
 						|| JavaPlugin.ANNOTATION_PROCESSOR_CONFIGURATION_NAME.equals(configuration.getName()))
 				.all((configuration) -> configuration.extendsFrom(dependencyManagement));
-		Dependency springBootParent = project.getDependencies().enforcedPlatform(
-				"org.springframework.boot:spring-boot-parent");
+		Dependency springBootParent = project.getDependencies()
+				.enforcedPlatform("org.springframework.boot:spring-boot-parent");
 		dependencyManagement.getDependencies().add(springBootParent);
 		project.getPlugins().withType(OptionalDependenciesPlugin.class, (optionalDependencies) -> configurations
 				.getByName(OptionalDependenciesPlugin.OPTIONAL_CONFIGURATION_NAME).extendsFrom(dependencyManagement));
