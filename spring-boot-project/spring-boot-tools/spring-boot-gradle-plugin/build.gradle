@@ -67,7 +67,7 @@ validatePlugins {
 }
 
 task dependencyVersions(type: org.springframework.boot.build.constraints.ExtractVersionConstraints) {
-	enforcedPlatform(":spring-boot-project:spring-boot-dependencies")
+	enforcedPlatform("org.springframework.boot:spring-boot-dependencies")
 }
 
 tasks.withType(org.asciidoctor.gradle.jvm.AbstractAsciidoctorTask) {

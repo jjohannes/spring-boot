@@ -33,7 +33,7 @@ dependencies {
 	testRepository(group: "org.springframework.boot", name: "spring-boot-loader", configuration: "mavenRepository")
 	testRepository(group: "org.springframework.boot", name: "spring-boot-starter", configuration: "mavenRepository")
 
-	testImplementation("org.springframework.boot:spring-boot-tools:spring-boot-loader-tools")
+	testImplementation("org.springframework.boot:spring-boot-loader-tools")
 	testImplementation("org.assertj:assertj-core")
 	testImplementation("org.junit.jupiter:junit-jupiter")
 	testImplementation("org.springframework:spring-core")
