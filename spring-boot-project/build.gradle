@@ -1,0 +1,5 @@
+tasks.register("check") { t ->
+    subprojects.findAll { it.name != "spring-boot-dependencies" &&  it.name != "spring-boot-parent" }.each {
+        t.dependsOn(":$it.name:check")
+    }
+}

@@ -14,3 +14,10 @@ nohttp {
 repositories {
 	mavenCentral()
 }
+
+// See: https://github.com/gradle/gradle/issues/2533
+tasks.register("checkAll") {a ->
+	gradle.includedBuilds.each {
+		a.dependsOn(it.task(":check"))
+	}
+}
