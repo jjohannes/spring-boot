@@ -30,6 +30,7 @@ import org.gradle.api.artifacts.Configuration;
 import org.gradle.api.artifacts.ConfigurationContainer;
 import org.gradle.api.artifacts.Dependency;
 import org.gradle.api.artifacts.DependencySet;
+import org.gradle.api.invocation.Gradle;
 import org.gradle.api.plugins.JavaBasePlugin;
 import org.gradle.api.plugins.JavaPlugin;
 import org.gradle.api.plugins.quality.CheckstyleExtension;
@@ -165,11 +166,20 @@ class JavaConventions {
 		project.getPlugins().apply(CheckstylePlugin.class);
 		CheckstyleExtension checkstyle = project.getExtensions().getByType(CheckstyleExtension.class);
 		checkstyle.setToolVersion("8.29");
-		checkstyle.getConfigDirectory().set(project.getRootProject().file("src/checkstyle"));
+		checkstyle.getConfigDirectory().set(getRootBuild(project.getGradle()).getRootProject().file("src/checkstyle"));
 		String version = SpringJavaFormatPlugin.class.getPackage().getImplementationVersion();
 		DependencySet checkstyleDependencies = project.getConfigurations().getByName("checkstyle").getDependencies();
 		checkstyleDependencies
 				.add(project.getDependencies().create("io.spring.javaformat:spring-javaformat-checkstyle:" + version));
+	}
+
+	private Gradle getRootBuild(Gradle build) {
+		if (build.getGradle().getParent() == null) {
+			return build.getGradle();
+		}
+		else {
+			return getRootBuild(build.getGradle().getParent());
+		}
 	}
 
 	private void configureDependencyManagement(Project project) {

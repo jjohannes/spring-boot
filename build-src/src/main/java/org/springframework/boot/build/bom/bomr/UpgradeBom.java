@@ -33,6 +33,7 @@ import org.gradle.api.DefaultTask;
 import org.gradle.api.InvalidUserDataException;
 import org.gradle.api.Task;
 import org.gradle.api.internal.tasks.userinput.UserInputHandler;
+import org.gradle.api.invocation.Gradle;
 import org.gradle.api.tasks.TaskAction;
 import org.gradle.api.tasks.TaskExecutionException;
 import org.gradle.api.tasks.options.Option;
@@ -64,6 +65,15 @@ public class UpgradeBom extends DefaultTask {
 		this.milestone = milestone;
 	}
 
+	private Gradle getRootBuild(Gradle build) {
+		if (build.getGradle().getParent() == null) {
+			return build.getGradle();
+		}
+		else {
+			return getRootBuild(build.getGradle().getParent());
+		}
+	}
+
 	@TaskAction
 	void upgradeDependencies() {
 		GitHubRepository repository = createGitHub().getRepository(this.bom.getUpgrade().getGitHub().getOrganization(),
@@ -82,7 +92,7 @@ public class UpgradeBom extends DefaultTask {
 				this.bom.getUpgrade().getPolicy(), getServices().get(UserInputHandler.class))
 						.resolveUpgrades(this.bom.getLibraries());
 		Path buildFile = getProject().getBuildFile().toPath();
-		Path gradleProperties = new File(getProject().getRootProject().getProjectDir(), "gradle.properties").toPath();
+		Path gradleProperties = new File(getRootBuild(getProject().getGradle()).getRootProject().getProjectDir(), "gradle.properties").toPath();
 		UpgradeApplicator upgradeApplicator = new UpgradeApplicator(buildFile, gradleProperties);
 		for (Upgrade upgrade : upgrades) {
 			String title = "Upgrade to " + upgrade.getLibrary().getName() + " " + upgrade.getVersion();
