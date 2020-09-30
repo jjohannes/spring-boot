@@ -17,7 +17,7 @@
 package org.springframework.boot.build.testing;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -25,6 +25,7 @@ import java.util.TreeMap;
 import org.gradle.BuildResult;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
+import org.gradle.api.invocation.Gradle;
 import org.gradle.api.tasks.testing.Test;
 import org.gradle.api.tasks.testing.TestDescriptor;
 import org.gradle.api.tasks.testing.TestListener;
@@ -39,33 +40,39 @@ public class TestFailuresPlugin implements Plugin<Project> {
 
 	@Override
 	public void apply(Project project) {
-		if (project.getRootProject().getExtensions().findByName("testResults") != null) {
-			return;
-		}
-		TestResultsExtension testResults = getOrCreateTestResults(project);
+		Object testResults = getOrCreateTestResults(project);
 		project.getTasks().withType(Test.class,
 				(test) -> test.addTestListener(new FailureRecordingTestListener(testResults, test)));
 	}
 
-	private TestResultsExtension getOrCreateTestResults(Project project) {
-		TestResultsExtension testResults = project.getRootProject().getExtensions()
-				.findByType(TestResultsExtension.class);
+	private Gradle getRootBuild(Gradle build) {
+		if (build.getGradle().getParent() == null) {
+			return build.getGradle();
+		}
+		else {
+			return getRootBuild(build.getGradle().getParent());
+		}
+	}
+
+	private Object getOrCreateTestResults(Project project) {
+		Object testResults = getRootBuild(project.getGradle()).getRootProject().getExtensions().findByName("testResults");
 		if (testResults == null) {
-			testResults = project.getRootProject().getExtensions().create("testResults", TestResultsExtension.class);
-			project.getRootProject().getGradle().buildFinished(testResults::buildFinished);
+			TestResultsExtension newTestResults = getRootBuild(project.getGradle()).getRootProject().getExtensions().create("testResults", TestResultsExtension.class);
+			getRootBuild(project.getGradle()).buildFinished(newTestResults::buildFinished);
+			testResults = newTestResults;
 		}
 		return testResults;
 	}
 
 	private final class FailureRecordingTestListener implements TestListener {
 
-		private final List<TestFailure> failures = new ArrayList<>();
+		private final List<TestDescriptor> failures = new ArrayList<>();
 
-		private final TestResultsExtension testResults;
+		private final Object testResults;
 
 		private final Test test;
 
-		private FailureRecordingTestListener(TestResultsExtension testResults, Test test) {
+		private FailureRecordingTestListener(Object testResults, Test test) {
 			this.testResults = testResults;
 			this.test = test;
 		}
@@ -73,15 +80,22 @@ public class TestFailuresPlugin implements Plugin<Project> {
 		@Override
 		public void afterSuite(TestDescriptor descriptor, TestResult result) {
 			if (!this.failures.isEmpty()) {
-				Collections.sort(this.failures);
-				this.testResults.addFailures(this.test, this.failures);
+				this.failures.sort(Comparator.comparing(TestDescriptor::getClassName).
+						thenComparing(TestDescriptor::getName));
+				try {
+					// Need to use reflection, see: https://github.com/gradle/gradle/issues/14697
+					this.testResults.getClass().getMethod("addFailures", Test.class, List.class).invoke(
+							testResults, this.test, this.failures);
+				} catch (Exception e) {
+					throw new RuntimeException(e);
+				}
 			}
 		}
 
 		@Override
 		public void afterTest(TestDescriptor descriptor, TestResult result) {
 			if (result.getFailedTestCount() > 0) {
-				this.failures.add(new TestFailure(descriptor));
+				this.failures.add(descriptor);
 			}
 		}
 
@@ -118,12 +132,12 @@ public class TestFailuresPlugin implements Plugin<Project> {
 
 	public static class TestResultsExtension {
 
-		private final Map<Test, List<TestFailure>> testFailures = new TreeMap<>(
+		private final Map<Test, List<TestDescriptor>> testFailures = new TreeMap<>(
 				(one, two) -> one.getPath().compareTo(two.getPath()));
 
 		private final Object monitor = new Object();
 
-		void addFailures(Test test, List<TestFailure> testFailures) {
+		public void addFailures(Test test, List<TestDescriptor> testFailures) {
 			synchronized (this.monitor) {
 				this.testFailures.put(test, testFailures);
 			}
@@ -141,7 +155,7 @@ public class TestFailuresPlugin implements Plugin<Project> {
 					System.err.println();
 					System.err.println(task.getPath());
 					failures.forEach((failure) -> System.err.println(
-							"    " + failure.descriptor.getClassName() + " > " + failure.descriptor.getName()));
+							"    " + failure.getClassName() + " > " + failure.getName()));
 				});
 			}
 		}
