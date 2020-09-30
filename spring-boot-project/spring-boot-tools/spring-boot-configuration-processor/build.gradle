@@ -15,7 +15,7 @@ sourceSets {
 }
 
 dependencies {
-	testImplementation(enforcedPlatform("org.springframework.boot:spring-boot-project:spring-boot-dependencies"))
+	testImplementation(enforcedPlatform("org.springframework.boot:spring-boot-dependencies"))
 	testImplementation("org.springframework.boot:spring-boot-test-support")
 	testImplementation("javax.validation:validation-api")
 	testImplementation("org.assertj:assertj-core")

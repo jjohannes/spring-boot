@@ -7,7 +7,7 @@ plugins {
 description = "Spring Boot AutoConfigure Annotation Processor"
 
 dependencies {
-	testImplementation(enforcedPlatform("org.springframework.boot:spring-boot-project:spring-boot-dependencies"))
+	testImplementation(enforcedPlatform("org.springframework.boot:spring-boot-dependencies"))
 	testImplementation("org.springframework.boot:spring-boot-test-support")
 	testImplementation("org.assertj:assertj-core")
 	testImplementation("org.springframework:spring-core")

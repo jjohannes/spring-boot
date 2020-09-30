@@ -10,3 +10,7 @@ nohttp {
 	whitelistFile = project.file("src/nohttp/whitelist.lines")
 	source.exclude "buildSrc/build/**"
 }
+
+repositories {
+	mavenCentral()
+}

@@ -93,7 +93,7 @@ dependencies {
 	mavenPluginDocumentation(group: "org.springframework.boot", name: "spring-boot-maven-plugin", configuration: "documentation")
 
 	testImplementation("org.springframework.boot:spring-boot-actuator-autoconfigure")
-	testImplementation("org.springframework.boot:spring-boot-tools:spring-boot-test-support")
+	testImplementation("org.springframework.boot:spring-boot-test-support")
 	testImplementation("org.assertj:assertj-core")
 	testImplementation("org.junit.jupiter:junit-jupiter")
 
@@ -105,7 +105,7 @@ dependencies {
 }
 
 task dependencyVersions(type: org.springframework.boot.build.constraints.ExtractVersionConstraints) {
-	enforcedPlatform(":spring-boot-project:spring-boot-dependencies")
+	enforcedPlatform("org.springframework.boot:spring-boot-dependencies")
 }
 
 task aggregatedJavadoc(type: Javadoc) {

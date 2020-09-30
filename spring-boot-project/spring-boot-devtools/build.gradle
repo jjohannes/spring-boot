@@ -43,7 +43,7 @@ dependencies {
 	optional("org.springframework.data:spring-data-redis")
 	optional("org.springframework.session:spring-session-core")
 
-	testImplementation("org.springframework.boot:spring-boot-tools:spring-boot-test-support")
+	testImplementation("org.springframework.boot:spring-boot-test-support")
 	testImplementation("org.springframework.boot:spring-boot-test")
 	testImplementation("ch.qos.logback:logback-classic")
 	testImplementation("com.h2database:h2")
