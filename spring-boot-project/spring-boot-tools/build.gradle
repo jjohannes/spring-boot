@@ -1,0 +1,6 @@
+
+tasks.register("check") { t ->
+    subprojects.each {
+        t.dependsOn(":$it.name:check")
+    }
+}
