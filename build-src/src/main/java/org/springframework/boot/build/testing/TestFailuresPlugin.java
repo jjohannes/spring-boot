@@ -55,9 +55,11 @@ public class TestFailuresPlugin implements Plugin<Project> {
 	}
 
 	private Object getOrCreateTestResults(Project project) {
-		Object testResults = getRootBuild(project.getGradle()).getRootProject().getExtensions().findByName("testResults");
+		Object testResults = getRootBuild(project.getGradle()).getRootProject().getExtensions()
+				.findByName("testResults");
 		if (testResults == null) {
-			TestResultsExtension newTestResults = getRootBuild(project.getGradle()).getRootProject().getExtensions().create("testResults", TestResultsExtension.class);
+			TestResultsExtension newTestResults = getRootBuild(project.getGradle()).getRootProject().getExtensions()
+					.create("testResults", TestResultsExtension.class);
 			getRootBuild(project.getGradle()).buildFinished(newTestResults::buildFinished);
 			testResults = newTestResults;
 		}
@@ -80,14 +82,16 @@ public class TestFailuresPlugin implements Plugin<Project> {
 		@Override
 		public void afterSuite(TestDescriptor descriptor, TestResult result) {
 			if (!this.failures.isEmpty()) {
-				this.failures.sort(Comparator.comparing(TestDescriptor::getClassName).
-						thenComparing(TestDescriptor::getName));
+				this.failures.sort(
+						Comparator.comparing(TestDescriptor::getClassName).thenComparing(TestDescriptor::getName));
 				try {
-					// Need to use reflection, see: https://github.com/gradle/gradle/issues/14697
-					this.testResults.getClass().getMethod("addFailures", Test.class, List.class).invoke(
-							testResults, this.test, this.failures);
-				} catch (Exception e) {
-					throw new RuntimeException(e);
+					// Need to use reflection, see:
+					// https://github.com/gradle/gradle/issues/14697
+					this.testResults.getClass().getMethod("addFailures", Test.class, List.class)
+							.invoke(this.testResults, this.test, this.failures);
+				}
+				catch (Exception ex) {
+					throw new RuntimeException(ex);
 				}
 			}
 		}
@@ -154,8 +158,8 @@ public class TestFailuresPlugin implements Plugin<Project> {
 				this.testFailures.forEach((task, failures) -> {
 					System.err.println();
 					System.err.println(task.getPath());
-					failures.forEach((failure) -> System.err.println(
-							"    " + failure.getClassName() + " > " + failure.getName()));
+					failures.forEach((failure) -> System.err
+							.println("    " + failure.getClassName() + " > " + failure.getName()));
 				});
 			}
 		}

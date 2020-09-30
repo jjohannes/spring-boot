@@ -92,7 +92,8 @@ public class UpgradeBom extends DefaultTask {
 				this.bom.getUpgrade().getPolicy(), getServices().get(UserInputHandler.class))
 						.resolveUpgrades(this.bom.getLibraries());
 		Path buildFile = getProject().getBuildFile().toPath();
-		Path gradleProperties = new File(getRootBuild(getProject().getGradle()).getRootProject().getProjectDir(), "gradle.properties").toPath();
+		Path gradleProperties = new File(getRootBuild(getProject().getGradle()).getRootProject().getProjectDir(),
+				"gradle.properties").toPath();
 		UpgradeApplicator upgradeApplicator = new UpgradeApplicator(buildFile, gradleProperties);
 		for (Upgrade upgrade : upgrades) {
 			String title = "Upgrade to " + upgrade.getLibrary().getName() + " " + upgrade.getVersion();
