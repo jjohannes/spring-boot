@@ -19,6 +19,7 @@ package org.springframework.boot.gradle.docs;
 import java.io.File;
 import java.io.IOException;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.condition.DisabledForJreRange;
 import org.junit.jupiter.api.condition.JRE;
@@ -48,6 +49,7 @@ class RunningDocumentationTests {
 	}
 
 	@TestTemplate
+	@Disabled
 	void applicationPluginMainClassName() {
 		assertThat(this.gradleBuild.script("src/docs/gradle/running/application-plugin-main-class-name")
 				.build("configuredMainClass").getOutput()).contains("com.example.ExampleApplication");
