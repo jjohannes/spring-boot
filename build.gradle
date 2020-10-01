@@ -16,6 +16,11 @@ repositories {
 }
 
 // See: https://github.com/gradle/gradle/issues/2533
+tasks.named("help") {t ->
+	gradle.includedBuilds.each {
+		t.dependsOn(it.task(":help"))
+	}
+}
 tasks.register("checkAll") {a ->
 	gradle.includedBuilds.each {
 		a.dependsOn(it.task(":check"))
