@@ -21,8 +21,8 @@ tasks.named("help") {t ->
 		t.dependsOn(it.task(":help"))
 	}
 }
-tasks.register("checkAll") {a ->
+tasks.register("compileJava") {a ->
 	gradle.includedBuilds.each {
-		a.dependsOn(it.task(":check"))
+		a.dependsOn(it.task(":compileJava"))
 	}
 }

@@ -1,6 +1,6 @@
 
-tasks.register("check") { t ->
-    subprojects.each {
-        t.dependsOn(":$it.name:check")
+tasks.register("compileJava") { t ->
+    subprojects.findAll { it.name != "spring-boot-smoke-test-ant" }.each {
+        t.dependsOn(":$it.name:compileJava")
     }
 }
