@@ -97,7 +97,7 @@ test {
 	dependsOn syncTestRepository
 }
 
-task fullJar(type: Jar) {
+def fullJar = tasks.register("fullJar", Jar) {
 	classifier = "full"
 	entryCompression = "stored"
 	from(configurations.runtimeClasspath) {
@@ -107,7 +107,7 @@ task fullJar(type: Jar) {
 		into "BOOT-INF/classes"
 	}
 	into("") {
-		from zipTree(configurations.loader.singleFile)
+		from provider { zipTree(configurations.loader.singleFile) }
 	}
 	manifest {
 		attributes(
@@ -179,7 +179,7 @@ def homebrewFormulaArtifact = artifacts.add("archives", file("${buildDir}/homebr
 
 publishing {
 	publications {
-		getByName("maven") {
+		named("maven") {
 			artifact fullJar
 			artifact tar
 			artifact zip
